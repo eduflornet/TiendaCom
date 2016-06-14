@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ConfiguradorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Nombre" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellidos" Type="nchar" MaxLength="300" Nullable="false" />
+          <Property Name="Email" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Componente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Iva" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="idCategoria" Type="int" Nullable="false" />
+          <Property Name="idFabricante" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Configuracion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="idComponente" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fabricante">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Componente_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Componente" Type="Self.Componente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Componente">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Componente_Fabricante">
+          <End Role="Fabricante" Type="Self.Fabricante" Multiplicity="1" />
+          <End Role="Componente" Type="Self.Componente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fabricante">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Componente">
+              <PropertyRef Name="idFabricante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configuracion_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Configuracion" Type="Self.Configuracion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Configuracion">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configuracion_Componente">
+          <End Role="Componente" Type="Self.Componente" Multiplicity="1" />
+          <End Role="Configuracion" Type="Self.Configuracion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Componente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Configuracion">
+              <PropertyRef Name="idComponente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ConfiguradorModelStoreContainer">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Componente" EntityType="Self.Componente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configuracion" EntityType="Self.Configuracion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fabricante" EntityType="Self.Fabricante" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Componente_Categoria" Association="Self.FK_Componente_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Componente" EntitySet="Componente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Componente_Fabricante" Association="Self.FK_Componente_Fabricante">
+            <End Role="Fabricante" EntitySet="Fabricante" />
+            <End Role="Componente" EntitySet="Componente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configuracion_Cliente" Association="Self.FK_Configuracion_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Configuracion" EntitySet="Configuracion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configuracion_Componente" Association="Self.FK_Configuracion_Componente">
+            <End Role="Componente" EntitySet="Componente" />
+            <End Role="Configuracion" EntitySet="Configuracion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ConfiguradorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Componente" Relationship="Self.FK_Componente_Categoria" FromRole="Categoria" ToRole="Componente" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="300" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Configuracion" Relationship="ConfiguradorModel.FK_Configuracion_Cliente" FromRole="Cliente" ToRole="Configuracion" />
+          </EntityType>
+        <EntityType Name="Componente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Iva" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <Property Name="idFabricante" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK_Componente_Categoria" FromRole="Componente" ToRole="Categoria" />
+          <NavigationProperty Name="Fabricante" Relationship="Self.FK_Componente_Fabricante" FromRole="Componente" ToRole="Fabricante" />
+          <NavigationProperty Name="Configuracion" Relationship="ConfiguradorModel.FK_Configuracion_Componente" FromRole="Componente" ToRole="Configuracion" />
+        </EntityType>
+        <EntityType Name="Fabricante">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Componente" Relationship="Self.FK_Componente_Fabricante" FromRole="Fabricante" ToRole="Componente" />
+        </EntityType>
+        <Association Name="FK_Componente_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Componente" Type="Self.Componente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Componente">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Componente_Fabricante">
+          <End Role="Fabricante" Type="Self.Fabricante" Multiplicity="1" />
+          <End Role="Componente" Type="Self.Componente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fabricante">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Componente">
+              <PropertyRef Name="idFabricante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ConfiguradorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Componente" EntityType="Self.Componente" />
+          <EntitySet Name="Fabricante" EntityType="Self.Fabricante" />
+          <AssociationSet Name="FK_Componente_Categoria" Association="Self.FK_Componente_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Componente" EntitySet="Componente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Componente_Fabricante" Association="Self.FK_Componente_Fabricante">
+            <End Role="Fabricante" EntitySet="Fabricante" />
+            <End Role="Componente" EntitySet="Componente" />
+          </AssociationSet>
+          <EntitySet Name="Configuracion" EntityType="ConfiguradorModel.Configuracion" />
+          <AssociationSet Name="FK_Configuracion_Cliente" Association="ConfiguradorModel.FK_Configuracion_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Configuracion" EntitySet="Configuracion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configuracion_Componente" Association="ConfiguradorModel.FK_Configuracion_Componente">
+            <End Role="Componente" EntitySet="Componente" />
+            <End Role="Configuracion" EntitySet="Configuracion" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Configuracion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="idComponente" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Cliente" Relationship="ConfiguradorModel.FK_Configuracion_Cliente" FromRole="Configuracion" ToRole="Cliente" />
+          <NavigationProperty Name="Componente" Relationship="ConfiguradorModel.FK_Configuracion_Componente" FromRole="Configuracion" ToRole="Componente" />
+        </EntityType>
+        <Association Name="FK_Configuracion_Cliente">
+          <End Type="ConfiguradorModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="ConfiguradorModel.Configuracion" Role="Configuracion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Configuracion">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configuracion_Componente">
+          <End Type="ConfiguradorModel.Componente" Role="Componente" Multiplicity="1" />
+          <End Type="ConfiguradorModel.Configuracion" Role="Configuracion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Componente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Configuracion">
+              <PropertyRef Name="idComponente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ConfiguradorModelStoreContainer" CdmEntityContainer="ConfiguradorEntities">
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="ConfiguradorModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="ConfiguradorModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Componente">
+            <EntityTypeMapping TypeName="ConfiguradorModel.Componente">
+              <MappingFragment StoreEntitySet="Componente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Iva" ColumnName="Iva" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idFabricante" ColumnName="idFabricante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fabricante">
+            <EntityTypeMapping TypeName="ConfiguradorModel.Fabricante">
+              <MappingFragment StoreEntitySet="Fabricante">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configuracion">
+            <EntityTypeMapping TypeName="ConfiguradorModel.Configuracion">
+              <MappingFragment StoreEntitySet="Configuracion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idComponente" ColumnName="idComponente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

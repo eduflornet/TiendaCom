@@ -27,6 +27,7 @@ namespace Configurador.Repositorio.Model
         public decimal Iva { get; set; }
         public int idCategoria { get; set; }
         public int idFabricante { get; set; }
+        public byte[] ImageData { get; set; }
     
         public virtual Categoria Categoria { get; set; }
         public virtual Fabricante Fabricante { get; set; }

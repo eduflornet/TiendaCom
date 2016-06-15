@@ -12,6 +12,7 @@ namespace Configurador.Repositorio.ViewModel
         public decimal Iva { get; set; }
         public int idCategoria { get; set; }
         public int idFabricante { get; set; }
+        public byte[] ImageData { get; set; }
 
         public Componente ToBaseDatos()
         {
@@ -23,7 +24,8 @@ namespace Configurador.Repositorio.ViewModel
                 Precio = Precio,
                 Iva = Iva,
                 idCategoria = idCategoria,
-                idFabricante = idFabricante
+                idFabricante = idFabricante,
+                ImageData = ImageData
             };
         }
 
@@ -36,6 +38,7 @@ namespace Configurador.Repositorio.ViewModel
             Iva = modelo.Iva;
             idCategoria = modelo.idCategoria;
             idFabricante = modelo.idFabricante;
+            ImageData = modelo.ImageData;
         }
 
         public void UpdateBaseDatos(Componente modelo)
@@ -46,6 +49,7 @@ namespace Configurador.Repositorio.ViewModel
             modelo.Precio = Precio;
             modelo.idCategoria = idCategoria;
             modelo.idFabricante = idFabricante;
+            modelo.ImageData = ImageData;
         }
 
         public object[] GetKeys()

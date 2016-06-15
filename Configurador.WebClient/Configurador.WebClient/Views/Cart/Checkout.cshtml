@@ -1,0 +1,35 @@
+﻿@model Configurador.WebClient.Models.ShippingDetails
+@{
+    ViewBag.Title = "Configurador Web: Checkout";
+}
+
+<h2>Checkout</h2>
+Por favor, introduzca sus datos y nosotros enviaremos sus componentes de acuerdo a la configuración que ha elegido!
+@using (Html.BeginForm())
+{
+
+    @Html.ValidationSummary()
+
+    <h3>Enviar a</h3>
+    <div>Nombre: @Html.EditorFor(x => x.Nombre)</div>
+
+    <h3>Dirección</h3>
+    <div>Dirección 1: @Html.EditorFor(x => x.Direccion1)</div>
+    <div>Dirección 2: @Html.EditorFor(x => x.Direccion2)</div>
+    <div>Dirección 3: @Html.EditorFor(x => x.Direccion3)</div>
+    <div>Ciudad: @Html.EditorFor(x => x.Ciudad)</div>
+    <div>Provincia: @Html.EditorFor(x => x.Provincia)</div>
+    <div>Código Postal: @Html.EditorFor(x => x.CP)</div>
+    <div>País: @Html.EditorFor(x => x.Pais)</div>
+
+    <h3>Opciones</h3>
+    <label>
+        @Html.EditorFor(x => x.ParaRegalo)
+        Papel de regalo para estos artículos
+    </label>
+
+    <p align="center">
+        <input class="actionButtons" type="submit" value="Completar" />
+    </p>
+}
+

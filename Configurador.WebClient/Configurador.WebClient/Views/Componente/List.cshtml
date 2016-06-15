@@ -1,0 +1,16 @@
+﻿@using Configurador.WebClient.HtmlHelpers
+@model Configurador.WebClient.Models.ComponenteListViewModel
+
+@{
+    ViewBag.Title = "Configurador Web";
+}
+
+@foreach (var p in Model.Componentes)
+{
+    Html.RenderPartial("ComponenteSummary", p);
+}
+
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List",
+        new { page = x, idCategoria = Model.CurrentCategory }))
+</div>

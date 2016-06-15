@@ -1,0 +1,24 @@
+﻿@model Configurador.Repositorio.Model.Componente
+
+<div class="item">
+
+    @if (Model.ImageData != null)
+    {
+        <div style="float:left;margin-right:20px">
+            <img width="75" height="75" src="@Url.Action("GetImage", "Componente",
+                new { Model.Id })" />
+        </div>
+    }
+
+    <h3>@Model.Nombre</h3>
+    @Model.Descripcion
+
+    @using (Html.BeginForm("AddToCart", "Cart"))
+    {
+        @Html.HiddenFor(x => x.Id)
+        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+        <input type="submit" value="+ Agregar" />
+    }
+
+    <h4>@Model.Precio.ToString("c")</h4>
+</div>

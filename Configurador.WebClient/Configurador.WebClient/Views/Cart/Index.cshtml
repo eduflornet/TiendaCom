@@ -1,0 +1,51 @@
+﻿@model Configurador.WebClient.Models.CartIndexViewModel
+@{
+    ViewBag.Title = "Tienda de Componentes Musicales de Alta Fidelidad: Tu Configuración";
+}
+
+<h2>Your cart</h2>
+<table width="90%" align="center">
+    <thead>
+        <tr>
+            <th align="center">Cantidad</th>
+            <th align="left">Componente</th>
+            <th align="right">Precio</th>
+            <th align="right">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <tr>
+                <td align="center">@line.Quantity</td>
+                <td align="left">@line.Componente.Nombre</td>
+                <td align="right">@line.Componente.Precio.ToString("c")</td>
+                <td align="right">
+                    @((line.Quantity* line.Componente.Precio).ToString("c"))
+                </td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                {
+                        @Html.Hidden("idComponente", line.Componente.Id)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input class="actionButtons" type="submit"
+                               value="Eliminar" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" align="right">Total:</td>
+            <td align="right">
+                @Model.Cart.ComputeTotalValue().ToString("c")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<p align="center" class="actionButtons">
+    <a href="@Model.ReturnUrl">Continuar configurando</a>
+    @Html.ActionLink("Salir", "Checkout")
+</p>
+

@@ -1,7 +1,7 @@
 ﻿<p class="text-info">
-    Thanks for shopping at the Angular Store.<br />
-    This is your shopping cart. Here you can edit the items, 
-    go back to the store, clear the cart, or check out.
+    Gracias por hacer compras en esta tienda<br />
+    Este es su carrito de compras. Aqui puedes editar los artículos, 
+    volver a la tienda, limpiar el carro, o check out.
 </p>
 
 <div class="container-fluid">
@@ -13,16 +13,16 @@
 
                 <!-- header -->
                 <tr class="well">
-                    <td><b>Item</b></td>
-                    <td class="tdCenter"><b>Quantity</b></td>
-                    <td class="tdRight"><b>Price</b></td>
+                    <td><b>Articulo</b></td>
+                    <td class="tdCenter"><b>Cantidad</b></td>
+                    <td class="tdRight"><b>Precio</b></td>
                     <td />
                 </tr>
 
                 <!-- empty cart message -->
                 <tr ng-hide="cart.getTotalCount() > 0" >
                     <td class="tdCenter" colspan="4">
-                        Your cart is empty.
+                        Tu carrito esta vacío.
                     </td>
                 </tr>
 
@@ -70,13 +70,13 @@
                 <button 
                     class="btn btn-block" 
                     onclick="window.location.href='default.htm'">
-                    <i class="icon-chevron-left" /> back to store
+                    <i class="icon-chevron-left" /> volver a la tienda
                 </button>
                 <button 
                     class="btn btn-block btn-danger" 
                     ng-click="cart.clearItems()" 
                     ng-disabled="cart.getTotalCount() < 1" >
-                    <i class="icon-trash icon-white" /> clear cart
+                    <i class="icon-trash icon-white" /> limpiar el carrito
                 </button>
             </p>
 
@@ -87,13 +87,13 @@
                     class="btn btn-block btn-primary"
                     ng-click="cart.checkout('PayPal')"
                     ng-disabled="cart.getTotalCount() < 1">
-                    <i class="icon-ok icon-white" /> check out using PayPal
+                    <i class="icon-ok icon-white" /> check out utilizando PayPal
                 </button>
                 <button 
                     class="btn btn-block btn-primary" 
                     ng-click="cart.checkout('Google')" 
                     ng-disabled="cart.getTotalCount() < 1">
-                    <i class="icon-ok icon-white" /> check out using Google
+                    <i class="icon-ok icon-white" /> check out utilizando Google
                 </button>
             </p>
 
@@ -110,7 +110,7 @@
                     class="btn btn-block btn-link" 
                     ng-click="cart.checkout('Google')" 
                     ng-disabled="cart.getTotalCount() < 1" >
-                    <img src="https://checkout.google.com/buttons/checkout.gif?w=168&h=44&style=white&variant=text" alt="checkoutGoogle"/>
+                    <img src="https://checkout.google.com/buttons/checkout.gif?w=168&h=44&style=white&variant=text" alt="checkout Google"/>
                 </button>    
             </p>
         </div>

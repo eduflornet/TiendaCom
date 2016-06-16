@@ -12,10 +12,10 @@
 
                 <tr class="well">
                     <td class="tdRight" colspan="3" >
-                        <a href="default.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+                        <a href="default.htm#/cart" title="ir a la cesta de la compra" ng-disabled="cart.getTotalCount() < 1">
                             <i class="icon-shopping-cart" />
                             <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
-                            <span ng-show="cart.getTotalCount(product.sku) > 0"><br />this item is in the cart</span>
+                            <span ng-show="cart.getTotalCount(product.sku) > 0"><br />este artículo está en el carrito</span>
                         </a>
                     </td>
                 </tr>
@@ -37,10 +37,10 @@
 
                 <tr class="well">
                     <td class="tdRight" colspan="3" >
-                        <a href="default.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+                        <a href="default.htm#/cart" title="ir a la cesta de la compra" ng-disabled="cart.getTotalCount() < 1">
                             <i class="icon-shopping-cart" />
                             <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
-                            <span ng-show="cart.getTotalCount(product.sku) > 0"><br />this item is in the cart</span>
+                            <span ng-show="cart.getTotalCount(product.sku) > 0"><br />este artículo está en el carrito</span>
                         </a>
                     </td>
                 </tr>
@@ -53,18 +53,18 @@
             <button 
                 class="btn btn-block btn-success" 
                 ng-click="cart.addItem(product.sku, product.name, product.price, 1)">
-                <i class="icon-shopping-cart icon-white" /> add to cart
+                <i class="icon-shopping-cart icon-white" /> añadir a la cesta
             </button>
             <button 
                 class="btn btn-block btn-danger" 
                 ng-click="cart.addItem(product.sku, product.name, product.price, -10000)"
                 ng-disabled="cart.getTotalCount(product.sku) < 1">
-                <i class="icon-trash icon-white" /> remove from cart
+                <i class="icon-trash icon-white" /> borrar de la cesta
             </button>
             <button 
                 class="btn btn-block" 
                 onclick="window.location.href=''">
-                <i class="icon-chevron-left" /> back to store
+                <i class="icon-chevron-left" /> regresar a la tienda
             </button>
         </div>
     </div>

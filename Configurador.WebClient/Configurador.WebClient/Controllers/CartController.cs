@@ -60,7 +60,7 @@ namespace Configurador.WebClient.Controllers
             {
                 cart.AddItem(componente, 1);
             }
-            return RedirectToAction("Index", new { returnUrl });
+            return RedirectToAction("Index");
         }
 
         public RedirectToRouteResult RemoveFromCart(Cart cart, int idComponente, string returnUrl)

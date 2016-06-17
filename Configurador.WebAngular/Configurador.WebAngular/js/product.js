@@ -5,6 +5,6 @@ function product(sku, name, description, price, tax, details) {
     this.name = name;
     this.description = description;
     this.price = price;
-    this.pricetax = price*tax;
+    this.tax = tax;
     this.details = details;
 }

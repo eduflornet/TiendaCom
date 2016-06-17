@@ -15,18 +15,19 @@
                 <tr class="well">
                     <td><b>Articulo</b></td>
                     <td class="tdCenter"><b>Cantidad</b></td>
-                    <td class="tdRight"><b>Precio</b></td>
+                    <td class="tdRight"><b>Precio sin iva</b></td>
+                    <td class="tdRight"><b>Precio con iva</b></td>
                     <td />
                 </tr>
 
-                <!-- empty cart message -->
+                <!-- mensaje de carrito vacio -->
                 <tr ng-hide="cart.getTotalCount() > 0" >
                     <td class="tdCenter" colspan="4">
                         Tu carrito esta vacío.
                     </td>
                 </tr>
 
-                <!-- cart items -->
+                <!-- lista de articulos en el carrito -->
                 <tr ng-repeat="item in cart.items | orderBy:'name'">
                     <td>{{item.name}}</td>
                     <td class="tdCenter">
@@ -47,6 +48,7 @@
                       </div>
                     </td>
                     <td class="tdRight">{{item.price * item.quantity | currency: "€"}}</td>
+                    <td class="tdRight">{{item.price * item.tax | currency: "€"}}</td>
                     <td class="tdCenter" title="borrar del carrito">
                         <a href="" ng-click="cart.addItem(item.sku, item.name, item.price, -10000000)" >
                             <i class="icon-remove" />
@@ -59,6 +61,7 @@
                     <td><b>Total</b></td>
                     <td class="tdCenter"><b>{{cart.getTotalCount()}}</b></td>
                     <td class="tdRight"><b>{{cart.getTotalPrice() | currency: "€"}}</b></td>
+                    <td class="tdRight"><b>{{cart.getTotalPriceTax() | currency: "€"}}</b></td>
                     <td />
                 </tr>
             </table>

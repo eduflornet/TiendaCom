@@ -89,6 +89,19 @@ shoppingCart.prototype.getTotalPrice = function (sku) {
     return total;
 }
 
+// calcular el precio total con iva para todos los elementos se encuentran actualmente en el carrito
+shoppingCart.prototype.getTotalPriceTax = function (sku) {
+    var total = 0;
+    for (var i = 0; i < this.items.length; i++) {
+        var item = this.items[i];
+        if (sku == null || item.sku == sku) {
+            console.log("tax ->" + item.tax);
+            total += this.toNumber(item.quantity * (item.price*1.25));
+        }
+    }
+    return total;
+}
+
 // obtener el precio total para todos los elementos se encuentran actualmente en el carrito
 shoppingCart.prototype.getTotalCount = function (sku) {
     var count = 0;
@@ -153,8 +166,8 @@ shoppingCart.prototype.checkout = function (serviceName, clearCart) {
     }
 }
 
-// check out using PayPal
-// for details see:
+// check out usando PayPal
+// Para mayor detalle usar:
 // www.paypal.com/cgi-bin/webscr?cmd=p/pdn/howto_checkout-outside
 shoppingCart.prototype.checkoutPayPal = function (parms, clearCart) {
 
@@ -192,8 +205,8 @@ shoppingCart.prototype.checkoutPayPal = function (parms, clearCart) {
     form.remove();
 }
 
-// check out using Google Wallet
-// for details see:
+// check out usando Google Wallet
+// Para mayor detalle usar:
 // developers.google.com/checkout/developer/Google_Checkout_Custom_Cart_How_To_HTML
 // developers.google.com/checkout/developer/interactive_demo
 shoppingCart.prototype.checkoutGoogle = function (parms, clearCart) {
@@ -212,10 +225,10 @@ shoppingCart.prototype.checkoutGoogle = function (parms, clearCart) {
         data["item_merchant_id_" + ctr] = parms.merchantID;
     }
 
-    // build form
+    // construir form
     var form = $('<form/></form>');
-    // NOTE: in production projects, use the checkout.google url below;
-    // for debugging/testing, use the sandbox.google url instead.
+    // NOTA: en proyectos de producción, utilizar la url checkout.google a continuación;
+    // para la depuración / pruebas, usar la url sandbox.google.
     //form.attr("action", "https://checkout.google.com/api/checkout/v2/merchantCheckoutForm/Merchant/" + parms.merchantID);
     form.attr("action", "https://sandbox.google.com/checkout/api/checkout/v2/checkoutForm/Merchant/" + parms.merchantID);
     form.attr("method", "POST");
@@ -230,7 +243,7 @@ shoppingCart.prototype.checkoutGoogle = function (parms, clearCart) {
     form.remove();
 }
 
-// utility methods
+// Métodos de utilidad
 shoppingCart.prototype.addFormFields = function (form, data) {
     if (data != null) {
         $.each(data, function (name, value) {
@@ -247,7 +260,7 @@ shoppingCart.prototype.toNumber = function (value) {
 }
 
 //----------------------------------------------------------------
-// checkout parameters (one per supported payment service)
+// checkout parameters (soportado un servicio de pago)
 //
 function checkoutParameters(serviceName, merchantID, options) {
     this.serviceName = serviceName;
@@ -256,7 +269,7 @@ function checkoutParameters(serviceName, merchantID, options) {
 }
 
 //----------------------------------------------------------------
-// items in the cart
+// articulos en el carrito
 //
 function cartItem(sku, name, price, quantity) {
     this.sku = sku;

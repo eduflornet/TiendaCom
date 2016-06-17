@@ -9,10 +9,14 @@ function storeController($scope, $routeParams, DataService, $http) {
     
     $scope.cart = DataService.cart;
     $scope.store = DataService.store;
-    var path = "http://tiendacom-api.azurewebsites.net/api/";
-    $http.get(path+'Componentes').then(function (response) {
-        console.log("response -->"+response);
-        //$scope.user = response.data;
+    var path = "http://tiendacom-api.azurewebsites.net/api/Componentes";
+    $http({
+        method: 'GET',
+        url: path
+    }).then(function successCallback(response) {
+        console.log("response -->" + response);
+    }, function errorCallback(response) {
+        console.log("response -->" + response);
     });
     
 

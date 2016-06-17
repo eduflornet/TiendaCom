@@ -46,8 +46,8 @@
                             ng-click="cart.addItem(item.sku, item.name, item.price, -1)">-</button>
                       </div>
                     </td>
-                    <td class="tdRight">{{item.price * item.quantity | currency}}</td>
-                    <td class="tdCenter" title="remove from cart">
+                    <td class="tdRight">{{item.price * item.quantity | currency: "€"}}</td>
+                    <td class="tdCenter" title="borrar del carrito">
                         <a href="" ng-click="cart.addItem(item.sku, item.name, item.price, -10000000)" >
                             <i class="icon-remove" />
                         </a>
@@ -58,7 +58,7 @@
                 <tr class="well">
                     <td><b>Total</b></td>
                     <td class="tdCenter"><b>{{cart.getTotalCount()}}</b></td>
-                    <td class="tdRight"><b>{{cart.getTotalPrice() | currency}}</b></td>
+                    <td class="tdRight"><b>{{cart.getTotalPrice() | currency: "€"}}</b></td>
                     <td />
                 </tr>
             </table>

@@ -7,10 +7,10 @@ function shoppingCart(cartName) {
     this.checkoutParameters = {};
     this.items = [];
 
-    // load items from local storage when initializing
+    // cargar elementos de almacenamiento local al inicializar
     this.loadItems();
 
-    // save items to local storage when unloading
+    // guardar elementos en el almacenamiento local al descargar
     var self = this;
     $(window).unload(function () {
         if (self.clearCart) {
@@ -21,7 +21,7 @@ function shoppingCart(cartName) {
     });
 }
 
-// load items from local storage
+// cargar elementos de almacenamiento local
 shoppingCart.prototype.loadItems = function () {
     var items = localStorage != null ? localStorage[this.cartName + "_items"] : null;
     if (items != null && JSON != null) {
@@ -36,24 +36,24 @@ shoppingCart.prototype.loadItems = function () {
             }
         }
         catch (err) {
-            // ignore errors while loading...
+            // ignorar los errores durante la carga ...
         }
     }
 }
 
-// save items to local storage
+// guardar elementos en el almacenamiento local
 shoppingCart.prototype.saveItems = function () {
     if (localStorage != null && JSON != null) {
         localStorage[this.cartName + "_items"] = JSON.stringify(this.items);
     }
 }
 
-// adds an item to the cart
+// añade un elemento a la cesta
 shoppingCart.prototype.addItem = function (sku, name, price, quantity) {
     quantity = this.toNumber(quantity);
     if (quantity != 0) {
 
-        // update quantity for existing item
+        // actualizar la cantidad para items existentes
         var found = false;
         for (var i = 0; i < this.items.length && !found; i++) {
             var item = this.items[i];
@@ -77,7 +77,7 @@ shoppingCart.prototype.addItem = function (sku, name, price, quantity) {
     }
 }
 
-// get the total price for all items currently in the cart
+// calcular el precio total para todos los elementos se encuentran actualmente en el carrito
 shoppingCart.prototype.getTotalPrice = function (sku) {
     var total = 0;
     for (var i = 0; i < this.items.length; i++) {
@@ -89,7 +89,7 @@ shoppingCart.prototype.getTotalPrice = function (sku) {
     return total;
 }
 
-// get the total price for all items currently in the cart
+// obtener el precio total para todos los elementos se encuentran actualmente en el carrito
 shoppingCart.prototype.getTotalCount = function (sku) {
     var count = 0;
     for (var i = 0; i < this.items.length; i++) {

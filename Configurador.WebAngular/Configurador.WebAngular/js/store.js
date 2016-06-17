@@ -11,27 +11,17 @@
 //
 function store() {
     this.products = [
-        new product("APL", "Apple", "Eat one every day to keep the doctor away!", 12, 90, 0, 2, 0, 1, 2),
-        new product("AVC", "Avocado", "Guacamole anyone?", 16, 90, 0, 1, 1, 1, 2),
-        new product("BAN", "Banana", "These are rich in Potassium and easy to peel.", 4, 120, 0, 2, 1, 2, 2),
-        new product("CTP", "Cantaloupe", "Delicious and refreshing.", 3, 50, 4, 4, 1, 2, 0),
-        new product("FIG", "Fig", "OK, not that nutritious, but sooo good!", 10, 100, 0, 0, 0, 1, 2),
-        new product("GRF", "Grapefruit", "Pink or red, always healthy and delicious.", 11, 50, 4, 4, 1, 1, 1),
-        new product("GRP", "Grape", "Wine is great, but grapes are even better.", 8, 100, 0, 3, 0, 1, 1),
-        new product("GUA", "Guava", "Exotic, fragrant, tasty!", 8, 50, 4, 4, 0, 1, 2),
-        new product("KIW", "Kiwi", "These come from New Zealand.", 14, 90, 1, 4, 0, 2, 2),
-        new product("LYC", "Lychee", "Unusual and highly addictive!", 18, 125, 1, 4, 0, 2, 2),
-        new product("MAN", "Mango", "Messy to eat, but well worth it.", 8, 70, 3, 4, 0, 1, 1),
-        new product("ORG", "Orange", "Vitamin C anyone? Go ahead, make some juice.", 9, 70, 1, 4, 2, 1, 2),
-        new product("PAP", "Papaya", "Super-popular for breakfast.", 5, 60, 3, 4, 2, 2, 2),
-        new product("PCH", "Peach", "Add some cream and enjoy.", 19, 70, 1, 2, 0, 1, 2),
-        new product("PER", "Pear", "Delicious fresh, or cooked in red wine, or distilled.", 8, 100, 0, 2, 0, 1, 2),
-        new product("PMG", "Pomegranate", "Delicious, healthy, beautiful, and sophisticated!", 19, 110, 0, 2, 0, 2, 0),
-        new product("PNP", "Pineapple", "Enjoy it (but don't forget to peel first).", 4, 60, 0, 3, 0, 0, 1),
-        new product("PSM", "Persimmon", "Believe it or not, they are berries!", 6, 120, 4, 3, 0, 1, 3),
-        new product("STR", "Strawberry", "Beautiful, healthy, and delicious.", 7, 40, 0, 4, 1, 1, 2),
-        new product("TNG", "Tangerine", "Easier to peel than oranges!", 8, 50, 3, 4, 1, 1, 2),
-        new product("WML", "Watermelon", "Nothing comes close on those hot summer days.", 4, 90, 4, 4, 0, 1, 1)
+        new product("AMC", "Apple MFi Certificado", "Syncwire Lightning Cable Cargador iPhone", 12, 90, "Cable Cargador iPhone 1M-Nylon para iPhone 6s 6 Plus 5s 5c 5, iPad Pro Air 2, iPad mini 4 3 2, iPod touch 5th gen / 6th gen / Nano 7th gen, Gris [Nueva Versión]"),
+        new product("ANK", "Anker Altavoz", "Inalámbrico Portátil Bluetooth SoundCore", 16, 90, "Calidad sonora superior: experimenta un sonido estéreo de excelente robustez gracias a dos conos de alto rendimiento y un exclusivo reflector de graves espiral (con patente pendiente)."),
+        new product("APV", "AUKEY Type C Cable", "Cable a USB 3.0 A de nylon [ 1m *3 ] USB C.", 4, 120, "Cable de Carga y Sincronización para MacBook mit 12 Retina Display Macbook A1534 Google Chromebook Pixel Nokia N1 Tablet OnePlus 2"),
+        new product("BSM", "Bose® SoundLink® Mini II", "Altavoz portátil Bluetooth, color perla", 167, 50, "Sonido excelente y graves profundos para disfrutar de cada matiz Inalámbrico y ultracompacto para disfrutar del sonido Bose® estés donde estés. Manos libres integrado para recibir llamada Avisos de voz que te guían por el proceso de emparejamiento Bluetooth. Batería recargable que ofrece hasta 16 horas de reproducción"),
+        
+        new product("JAP", "JBL Go Altavoz portátil", " Altavoz portátil para smartphonestablets y dispositivos MP3 (Bluetooth, recargable, entrada AUX), color cerceta", 18, 125, "Sonido de alta calidad de transmisión inalámbrica desde su smartphone o tableta. Batería recargable Li-ion integrada que permite 5 horas de reproducción continuada. Reciba las llamadas desde su altavoz tocando un botón, conversaciones nítidas gracias al sistema manos libres sin ruidos. Tampoco se preocupe si no hay Bluetooth, conecte el cable de audio en el altavoz y disfrute de su música del mismo modo. Diseño simple en 8 vibrantes colores"),
+        
+        new product("LAA", "LEPY LP-A68 Amplificador", "Amplificador Audio Mini Hi- Fi Amplificador Estereo 15W Amplificador para CD IPOD MP3 MP4 MD + Fuente de Alimentacion de CA Adaptador de Cargador DC 12V 5A", 8, 70, "15 W diseno del circuito de musica. Cuerpo de aluminio con excelentes acabados. Tecnologia anti -deslizante. Luz LED azul en el control de volumen redondo. Compatible con CD MD MP3 MP4 IPOD"),
+        
+        new product("TAA", "TaoTronics Altavoz", "Altavoz Bluetooth Ducha Impermeable", 8, 50, "Toma una ducha mientras cantas tus canciones favoritas Coloca tu móvil o tablet en un lugar seguro mientras disfrutas de música o realizas llamadas en la ducha, gracias al Bluetooth Wireless 3.0 y A2DP estéreo Con la tecnología IPX4 el altavoz TaoTronics está protegido contra salpicaduras de agua, perfecto para el baño, la piscina, barcos, la playa, la bañera, el patio, etc. 5-6 horas de reproducción de audio continua. Compatible con iPhone, iPad, Android Smartphones, tablets, Windows smartphones, transmisores Bluetooth y otros dispositivos Bluetooth de música estéreo"),
+
     ];
     this.dvaCaption = [
         "Negligible",
